@@ -1,29 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace ds.test.impl
 {
-    public class Plugins : IPluginFactory
+    /// <summary> Статическая обертка для более удобной работы с библиотекой. </summary>
+    public static class Plugins
     {
-        private readonly Dictionary<string, IPlugin> _plugins;
+        public static Factory Factory { get; }
 
-        public Plugins()
+        static Plugins()
         {
-            _plugins = new Dictionary<string, IPlugin>() { { "sum", new Sum() } };
-        }
-        public int PluginsCount => _plugins.Count;
-
-        public string[] GetPluginNames => _plugins.Keys.ToArray();
-
-        public IPlugin GetPlugin(string pluginName)
-        {
-            if (string.IsNullOrEmpty(pluginName))
-            {
-                throw new ArgumentNullException(nameof(pluginName));
-            }
-            _plugins.TryGetValue(pluginName, out var plugin);
-            return plugin ?? throw new ArgumentException($"Плагин с именем {pluginName} не зарегистрирован!");
+            Factory = new Factory();
         }
     }
 }

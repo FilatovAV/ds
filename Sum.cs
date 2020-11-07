@@ -16,7 +16,7 @@ namespace ds.test.impl
         public string PluginName { get; } = "Сложение чисел";
         public string Version { get; } = "1.0";
         public Image Image { get; }
-        public string Description { get; private set; } = "Плагин выполняет операции сложения.";
+        public string Description { get; } = "Плагин выполняет операции сложения.";
         public int Run(int input1, int input2) => input1 + input2;
     }
 }
